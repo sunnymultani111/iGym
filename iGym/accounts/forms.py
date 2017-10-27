@@ -11,3 +11,8 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+    # def __init__(self, *args, **kwargs):
+    #     form = super(SignUpForm, self).__init__(*args, **kwargs)
+    #     for visible in form.visible_fields():
+    #         visible.field.widget.attrs['class'] = 'form-control'

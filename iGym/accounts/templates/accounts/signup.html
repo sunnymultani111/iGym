@@ -1,21 +1,32 @@
 {% extends 'Gym/base.html' %}
-
+{% load widget_tweaks %}
 {% block body %}
-<h2>Sign up</h2>
-<form method="post">
-  {% csrf_token %}
-  {% for field in form %}
-    <p>
-      {{ field.label_tag }}<br>
-      {{ field }}
-      {% if field.help_text %}
-        <small style="color: grey">{{ field.help_text }}</small>
-      {% endif %}
-      {% for error in field.errors %}
-        <p style="color: red">{{ error }}</p>
-      {% endfor %}
-    </p>
-  {% endfor %}
-  <button type="submit">Sign up</button>
-</form>
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+      <h1 class="logo-text">iGym</h1>
+      <h2>Sign up</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+          <p>
+            {{ field.label_tag }}<br>
+            {{ field|add_class:"form-control" }}
+            <!-- {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %} -->
+
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+        {% endfor %}
+        <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+      </form>
+    <div style="margin-top:10px;">
+        Already have account? <a href="{% url 'accounts:login' %}"> Login here</a>
+    </div>
+
+  </div>
+</div>
+
 {% endblock %}
